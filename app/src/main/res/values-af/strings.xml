@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Moneta</string>
+
+    <!-- Menu -->
+    <string name="action_settings">Verstellings</string>
+    <string name="action_converter">Valutabeheer</string>
+
+    <!-- Strings used for fragments -->
+    <string name="home_fragment_label">Huis</string>
+    <string name="add_currency_fragment_label">Nuwe Geldeenheid</string>
+    <string name="currency_detail_fragment_label">Besonderhede</string>
+    <string name="currency_converter_fragment_label">Valutabeheer</string>
+
+    <!-- Startup Screen -->
+    <string name="startup_initial_text">Besig om te laai</string>
+    <string name="startup_fetching_data">Data Verkry!</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_last_updated_prefix">Laaste opgedateer</string>
+    <string name="home_screen_title">Geldeenhede</string>
+    <string name="home_screen_no_data_text">Geen geldeenhede is gekies nie,\nvoeg \'n paar by!</string>
+    <string name="home_screen_empty_box_icon">Foto-plekhouer wat n leë skerm aandui</string>
+    <string name="home_screen_no_data_fab_indicator">Dui die aksie knoppie aan</string>
+    <string name="home_screen_update_data_indicator">Ikoon wat opdaterings teks uitlig.</string>
+
+    <!-- Add Screen -->
+    <string name="add_screen_currency_title">Kies \'n geldeenheid om te monitor</string>
+    <string name="add_screen_min_warning_rate">Minimum waarskuwingskoers</string>
+    <string name="add_screen_submit_button_text">Stoor</string>
+    <string name="add_currency_field_not_populated">Minimum tarief nie ingevul nie</string>
+    <string name="add_screen_info_text">Alle genoteerde geldeenhede sal met die <b>Amerikaanse dollar</b> vergelyk word.
+        Die minimum wisselkoers moet so opgestel word dat dit min of meer saamval,
+        met die <b>USD/Geselekteerde Geldeenheid</b> koers. As te lae \'n tarief
+        gespesifiseer word, mag die tariefwaarskuwings indikase dalk nooit geaktiveer word nie.
+    </string>
+
+    <!-- Detail Screen -->
+    <string name="currency_detail_screen_history_title">Geskiedenis</string>
+    <string name="currency_detail_screen_history_date_title">Datum</string>
+    <string name="currency_detail_screen_history_value_title">Wisselkoers</string>
+
+    <!-- Converter Screen -->
+    <string name="converter_screen_currency_title">Kies \'n geldeenheid om te omskep</string>
+    <string name="converter_screen_convert_button_text">Omskep</string>
+    <string name="converter_screen_convert_amount_title">Bedrag in Amerikaanse Dollar</string>
+    <string name="converter_screen_markup_description">Opslagpersentasie</string>
+    <string name="converter_screen_result_text_description">Jy kry</string>
+    <string name="converter_screen_amount_not_entered">Geen omskakelingsbedrag gespesifiseer nie</string>
+
+    <!-- Sync -->
+    <string name="sync_message">Ons probeer die nuutste wisselkoerse haal.</string>
+    <string name="sync_title">Laai Wisselkoerse</string>
+    <string name="warning_notification_title">%s geval onder u waarskuwingskoers</string>
+    <string name="warning_notification_description">Amerikaanse Dollar/%s wisselkoers het onder u gestoorde waarskuwingskoers gedaal.</string>
+    <string name="warning_notification_long_description">Amerikaanse Dollar/%s wisselkoers het onder u gestoorde waarskuwingskoers gedaal. Die geldeenheid verhandel nou teen %s</string>
+</resources>

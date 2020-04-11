@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Moneta</string>
+
+    <!-- Menu -->
+    <string name="action_settings">Settings</string>
+    <string name="action_converter">Currency Converter</string>
+
+    <!-- Strings used for fragments -->
+    <string name="home_fragment_label">Home</string>
+    <string name="add_currency_fragment_label">Add a new currency</string>
+    <string name="currency_detail_fragment_label">Exchange Rate Detail</string>
+    <string name="currency_converter_fragment_label">Currency Converter</string>
+
+    <!-- Startup Screen -->
+    <string name="startup_initial_text">Loading</string>
+    <string name="startup_fetching_data">Data Retrieved!</string>
+
+    <!-- Home Screen -->
+    <string name="home_screen_last_updated_prefix">Last Updated</string>
+    <string name="home_screen_title">Currencies</string>
+    <string name="home_screen_no_data_text">No currencies selected yet\ntry and add a few!</string>
+    <string name="home_screen_empty_box_icon">Image placeholder indicating no data</string>
+    <string name="home_screen_no_data_fab_indicator">Indicates fab to add items</string>
+    <string name="home_screen_update_data_indicator">Helper icon to highlight last updated text</string>
+
+    <!-- Add Screen -->
+    <string name="add_screen_currency_title">Select a currency to monitor</string>
+    <string name="add_screen_min_warning_rate">Minimum Warning Rate</string>
+    <string name="add_screen_min_warning_rate_hint" translatable="false">1.123</string>
+    <string name="add_screen_submit_button_text">Save</string>
+    <string name="add_currency_field_not_populated">Minimum rate not populated</string>
+    <string name="add_screen_info_text">All listed currencies will be compared to the <b>US Dollar</b>.
+        The minimum exchange rate should be set up so that it will coincide, more or less,
+        with the <b>USD/Selected Currency</b> rate. If too low a rate is specified the warning
+        rate alert might never be triggered.
+    </string>
+
+    <!-- Detail Screen -->
+    <string name="currency_detail_screen_history_title">History</string>
+    <string name="currency_detail_screen_history_date_title">Date</string>
+    <string name="currency_detail_screen_history_value_title">Exchange Rate</string>
+
+    <!-- Converter Screen -->
+    <string name="converter_screen_currency_title">Select a currency to convert</string>
+    <string name="converter_screen_convert_button_text">Convert</string>
+    <string name="converter_screen_convert_amount_title">Amount in USD</string>
+    <string name="converter_screen_amount_hint" translatable="false">123.00</string>
+    <string name="converter_screen_markup_description">Markup Percentage</string>
+    <string name="converter_screen_markup_percentage" translatable="false">7%</string>
+    <string name="converter_screen_result_text_description">You get</string>
+    <string name="converter_screen_amount_not_entered">No conversion amount specified</string>
+
+    <!-- Sync -->
+    <string name="sync_message">We\'re attempting to retrieve the latest exchange rates.</string>
+    <string name="sync_title">Fetching Exchange Rates</string>
+    <string name="warning_notification_title">%s dropped below your warning rate</string>
+    <string name="warning_notification_description">USD/%s exchange rate has dropped below your saved warning rate.</string>
+    <string name="warning_notification_long_description">USD/%s exchange rate has dropped below your saved warning rate. The currency is now trading at %s</string>
+</resources>

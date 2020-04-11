@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="za.co.gingergeek.moneta.MainActivity">
+    <item
+        android:id="@+id/action_converter"
+        android:orderInCategory="0"
+        android:title="@string/action_converter"
+        android:icon="@drawable/ic_calculator"
+        android:enabled="true"
+        app:showAsAction="always" />
+</menu>
