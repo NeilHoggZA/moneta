@@ -14,7 +14,7 @@ class AddCurrencyRepository(context: Context) : BaseRepository(context) {
         launch(Dispatchers.Main) {
             callback(withContext(Dispatchers.IO) {
                 database?.currencyDao()?.loadAll() ?: listOf()
-            })
+            }.sortedBy { it.isoCode })
         }
     }
 
