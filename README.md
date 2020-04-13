@@ -1,29 +1,22 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Moneta is an android application focussed on exchange rate monitoring. The app also has the ability to do currency conversions from USD and notify you of monitored currencies that has dropped below a certain value.
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Tracking of the moneta app.
+* 1.0
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Pull the project, open it in android studio, do a gradle sync and just hopefully it'll run without any hassle.
 
 ### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* Include unit tests and integration tests
+* Make sure solid principle is used in any newly added code and that sound design patterns are implemented.
+* Don't do ```sudo rm -r .```
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* NeilHoggZA
