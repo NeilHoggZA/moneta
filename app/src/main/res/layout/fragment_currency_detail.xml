@@ -13,53 +13,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:id="@+id/rate_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            app:cardElevation="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/iso_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{viewModel.exchangeDescription}"
+                android:textAlignment="center"
+                android:textColor="?android:attr/colorPrimary"
+                android:textSize="40sp"
+                tools:text="USD/ZAR" />
 
-                <TextView
-                    android:id="@+id/iso_code"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@{viewModel.exchangeDescription}"
-                    android:textAlignment="center"
-                    android:textColor="?android:attr/colorPrimary"
-                    android:textSize="30sp"
-                    tools:text="USD/ZAR" />
-
-                <TextView
-                    android:id="@+id/current_rate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@{viewModel.exchangeRate}"
-                    android:textAlignment="center"
-                    android:textColor="?android:attr/colorAccent"
-                    android:textSize="30sp"
-                    tools:text="17.948737" />
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/current_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@{viewModel.exchangeRate}"
+                android:textAlignment="center"
+                android:textColor="?android:attr/colorAccent"
+                android:textSize="40sp"
+                tools:text="17.948737" />
+        </LinearLayout>
         
         <TextView
             android:id="@+id/history_title"
