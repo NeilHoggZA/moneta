@@ -16,9 +16,7 @@ import za.co.gingergeek.moneta.di.ApplicationModule
 import za.co.gingergeek.moneta.di.DaggerApplicationComponent
 import za.co.gingergeek.moneta.helpers.SharedPreferenceHelper
 import za.co.gingergeek.moneta.net.OpenExchangeRatesAPI
-import za.co.gingergeek.moneta.sync.StartReceiver
 import za.co.gingergeek.moneta.sync.SyncJob
-import za.co.gingergeek.moneta.sync.SyncService
 import javax.inject.Inject
 
 class MainApplication : Application() {
