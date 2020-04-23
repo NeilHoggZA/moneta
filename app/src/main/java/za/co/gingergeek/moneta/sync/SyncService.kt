@@ -27,7 +27,29 @@ class SyncService : IntentService("SyncService") {
     }
 
     override fun onHandleIntent(intent: Intent?) {
+        runForeground()
         fetchData()
+    }
+
+    private fun runForeground() {
+        val channelId = "sync_channel"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(channelId,
+                getString(R.string.sync_message),
+                NotificationManager.IMPORTANCE_DEFAULT)
+            channel.setSound(null, null)
+            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(channel)
+        }
+
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setContentTitle(getString(R.string.sync_title))
+            .setContentText(getString(R.string.sync_message))
+            .setSmallIcon(R.drawable.ic_notification)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setSound(null)
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)).build()
+
+        startForeground(1, notification)
     }
 
     private fun fetchData() {
