@@ -15,14 +15,19 @@ import za.co.gingergeek.moneta.di.ApplicationComponent
 import za.co.gingergeek.moneta.di.ApplicationModule
 import za.co.gingergeek.moneta.di.DaggerApplicationComponent
 import za.co.gingergeek.moneta.helpers.SharedPreferenceHelper
+import za.co.gingergeek.moneta.net.OpenExchangeRatesAPI
 import za.co.gingergeek.moneta.sync.RepeatingReceiver
 import za.co.gingergeek.moneta.sync.SyncService
+import javax.inject.Inject
 
 class MainApplication : Application() {
     private val startupInterval: Long = 1000 * 5
     private val syncInterval: Long = 1000 * 60 * 15
     private val alarmInterval: Long = 1000 * 60 * 60 * 1
     private val handler = Handler()
+
+    var api: OpenExchangeRatesAPI? = null
+        @Inject set
 
     var applicationComponent: ApplicationComponent? = null
     var networkAvailable = false
@@ -41,6 +46,8 @@ class MainApplication : Application() {
         }.enable()
 
         scheduleSync()
+
+        applicationComponent?.inject(this)
     }
 
     private fun registerCallbacks() {
@@ -48,6 +55,7 @@ class MainApplication : Application() {
             if (it.state == LifeCycleCallbacks.ActivityState.DESTROYED) {
                 if (!isForegrounded() && it.activity.javaClass == MainActivity::class.java) {
                     handler.removeCallbacks(handlerTask)
+                    api?.dispose()
                 }
             }
         })

@@ -10,7 +10,7 @@ import za.co.gingergeek.moneta.net.OpenExchangeRatesConsumer
 
 @RunWith(AndroidJUnit4::class)
 class ApiConsumerTest {
-    lateinit var openExchangeRatesConsumer: OpenExchangeRatesConsumer
+    private lateinit var openExchangeRatesConsumer: OpenExchangeRatesConsumer
 
     @Before
     fun setup() {

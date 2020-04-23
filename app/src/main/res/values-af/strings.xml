@@ -14,6 +14,7 @@
     <!-- Startup Screen -->
     <string name="startup_initial_text">Besig om te laai</string>
     <string name="startup_fetching_data">Data Verkry!</string>
+    <string name="startup_no_network_connection">Kon nie die data verkry nie, kyk asseblief na u netwerkverbinding en probeer weer.</string>
 
     <!-- Home Screen -->
     <string name="home_screen_last_updated_prefix">Laaste opgedateer</string>

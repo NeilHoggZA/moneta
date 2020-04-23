@@ -2,8 +2,9 @@ package za.co.gingergeek.moneta
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.activity_startup.*
 import za.co.gingergeek.moneta.net.OpenExchangeRatesAPI
 import za.co.gingergeek.moneta.helpers.SharedPreferenceHelper
@@ -42,10 +43,14 @@ class StartupScreen : AppCompatActivity() {
 
     private fun updateExchangeRatesIfRequired() {
         if (SharedPreferenceHelper.getExchangeRatesLastUpdatedTimestamp(this) == -1L) {
-            api?.fetchExchangeRates {
-                progress_text.text = getString(R.string.startup_fetching_data)
-                startupSyncOccurred = true
-                startActivityIfCountDown()
+            api?.fetchExchangeRates { response ->
+                response?.run {
+                    progress_text.text = getString(R.string.startup_fetching_data)
+                    startupSyncOccurred = true
+                    startActivityIfCountDown()
+                } ?: run {
+                    showNoNetworkText()
+                }
             }
         } else {
             startActivityIfCountDown()
@@ -54,10 +59,14 @@ class StartupScreen : AppCompatActivity() {
 
     private fun updateCurrenciesIfRequired() {
         if (SharedPreferenceHelper.getCurrenciesLastUpdatedTimestamp(this) == -1L) {
-            api?.fetchCurrencies {
-                progress_text.text = getString(R.string.startup_fetching_data)
-                startupSyncOccurred = true
-                startActivityIfCountDown()
+            api?.fetchCurrencies { response ->
+                response?.run {
+                    progress_text.text = getString(R.string.startup_fetching_data)
+                    startupSyncOccurred = true
+                    startActivityIfCountDown()
+                } ?: run {
+                    showNoNetworkText()
+                }
             }
         } else {
             startActivityIfCountDown()
@@ -76,5 +85,11 @@ class StartupScreen : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun showNoNetworkText(): Boolean {
+        progress_text.text = getString(R.string.startup_no_network_connection)
+        progress_bar.visibility = View.GONE
+        return Handler().postDelayed({ finish() }, 4000)
     }
 }

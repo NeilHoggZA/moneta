@@ -14,6 +14,7 @@
     <!-- Startup Screen -->
     <string name="startup_initial_text">Loading</string>
     <string name="startup_fetching_data">Data Retrieved!</string>
+    <string name="startup_no_network_connection">Data could not be retrieved, please check your network connection and try again.</string>
 
     <!-- Home Screen -->
     <string name="home_screen_last_updated_prefix">Last Updated</string>
