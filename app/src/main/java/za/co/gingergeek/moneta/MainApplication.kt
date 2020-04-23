@@ -16,7 +16,8 @@ import za.co.gingergeek.moneta.di.ApplicationModule
 import za.co.gingergeek.moneta.di.DaggerApplicationComponent
 import za.co.gingergeek.moneta.helpers.SharedPreferenceHelper
 import za.co.gingergeek.moneta.net.OpenExchangeRatesAPI
-import za.co.gingergeek.moneta.sync.RepeatingReceiver
+import za.co.gingergeek.moneta.sync.StartReceiver
+import za.co.gingergeek.moneta.sync.SyncJob
 import za.co.gingergeek.moneta.sync.SyncService
 import javax.inject.Inject
 
@@ -67,7 +68,7 @@ class MainApplication : Application() {
         val lastSync: Long = SharedPreferenceHelper.getLastSyncedTimestamp(this)
         val oneHourAgo = System.currentTimeMillis() - alarmInterval
         if (lastSync < oneHourAgo || lastSync == -1L) {
-            RepeatingReceiver.scheduleAlarm(this)
+            SyncJob.scheduleJob(this)
         }
 
         handler.postDelayed(handlerTask, startupInterval)
@@ -76,7 +77,7 @@ class MainApplication : Application() {
     private val handlerTask: Runnable = object : Runnable {
         override fun run() {
             if (isForegrounded()) {
-                SyncService.enqueuePeriodicSync(this@MainApplication)
+                SyncJob.scheduleJob(this@MainApplication)
             }
             handler.postDelayed(this, syncInterval)
         }

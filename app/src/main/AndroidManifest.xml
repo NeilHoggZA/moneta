@@ -16,11 +16,20 @@
         android:theme="@style/AppTheme"
         android:name=".MainApplication">
 
-        <receiver android:name=".sync.RepeatingReceiver"/>
+        <service
+            android:name=".sync.SyncJob"
+            android:label="Sync Service"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <service
             android:name=".sync.SyncService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver android:name=".sync.StartReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".StartupScreen"
