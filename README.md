@@ -17,6 +17,4 @@ Moneta is an android application focussed on exchange rate monitoring. The app a
 * Make sure solid principle is used in any newly added code and that sound design patterns are implemented.
 * Don't do ```sudo rm -r .```
 
-### Who do I talk to? ###
-
-* NeilHoggZA
+### Good Luck! ###
