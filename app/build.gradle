@@ -90,6 +90,9 @@ dependencies {
     // Eventbus, for easy ui updates when
     implementation 'org.greenrobot:eventbus:3.0.0'
 
+    // Charting library
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
     // kotlin annotation processors for the above libs.
     kapt 'com.google.dagger:dagger-android-processor:2.16'
     kapt 'com.google.dagger:dagger-compiler:2.13'

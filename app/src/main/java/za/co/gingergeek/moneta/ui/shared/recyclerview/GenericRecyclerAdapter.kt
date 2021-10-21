@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import za.co.gingergeek.moneta.R
-import za.co.gingergeek.moneta.models.ExchangeRateHistory
-import za.co.gingergeek.moneta.models.SavedExchangeRate
 import za.co.gingergeek.moneta.models.Viewable
 
 class GenericRecyclerAdapter(context: Context?, private val presenter: RecyclerPresenter) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
