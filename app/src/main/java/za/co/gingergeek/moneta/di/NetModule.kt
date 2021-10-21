@@ -3,6 +3,7 @@ package za.co.gingergeek.moneta.di
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import za.co.gingergeek.moneta.API_KEY
 import za.co.gingergeek.moneta.BuildConfig
 import za.co.gingergeek.moneta.net.OpenExchangeRatesAPI
 import za.co.gingergeek.moneta.net.OpenExchangeRatesConsumer
@@ -16,7 +17,7 @@ class NetModule {
         return OpenExchangeRatesConsumer(
             context,
             BuildConfig.BASE_URL_SCHEMA,
-            BuildConfig.API_KEY
+            API_KEY
         )
     }
 }
