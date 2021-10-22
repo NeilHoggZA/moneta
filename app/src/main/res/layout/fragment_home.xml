@@ -42,11 +42,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/home_screen_update_data_indicator"
-                android:tint="?android:attr/textColorPrimary"
                 app:layout_constraintBottom_toBottomOf="@+id/last_updated"
                 app:layout_constraintEnd_toStartOf="@+id/last_updated"
                 app:layout_constraintTop_toTopOf="@+id/last_updated"
-                app:srcCompat="@drawable/ic_cached" />
+                app:srcCompat="@drawable/ic_cached"
+                app:tint="?android:attr/textColorPrimary" />
 
             <LinearLayout
                 android:id="@+id/no_data_layout"
@@ -64,8 +64,8 @@
                     android:layout_width="128dp"
                     android:layout_height="128dp"
                     android:contentDescription="@string/home_screen_empty_box_icon"
-                    android:tint="?android:attr/textColorPrimary"
-                    android:src="@drawable/ic_box" />
+                    android:src="@drawable/ic_box"
+                    app:tint="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -128,11 +128,11 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="80dp"
                 android:contentDescription="@string/home_screen_no_data_fab_indicator"
-                android:tint="?android:attr/textColorPrimary"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_curve_arrow" />
+                app:srcCompat="@drawable/ic_curve_arrow"
+                app:tint="?android:attr/textColorPrimary" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
