@@ -16,7 +16,7 @@ android {
         applicationId "za.co.gingergeek.moneta"
         minSdkVersion 21
         //noinspection OldTargetApi
-        targetSdkVersion 29 // changing this affects the LifeCycleCallbacks class, leave this as is for now
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
