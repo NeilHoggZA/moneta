@@ -31,6 +31,11 @@ class GenericRecyclerAdapter(context: Context?, private val presenter: RecyclerP
         }
     }
 
+    /**
+     * This probably worked but now that the data is
+     * also used to display a bar chart, we need a single source of truth
+     * to maintain consistency between the list of rates and the bar chart
+     */
     fun removeItem(viewable: Viewable?): Int {
         val position = data.indexOf(viewable)
         if (position != -1) {
@@ -40,6 +45,9 @@ class GenericRecyclerAdapter(context: Context?, private val presenter: RecyclerP
         return position
     }
 
+    /**
+     * This method should be deleted
+     */
     fun isEmpty(): Boolean = data.isEmpty()
 
     fun refreshData(updatedData: List<Viewable>) {

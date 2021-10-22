@@ -2,20 +2,16 @@ package za.co.gingergeek.moneta.ui.home
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
 import android.view.View.*
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -24,17 +20,15 @@ import za.co.gingergeek.moneta.R
 import za.co.gingergeek.moneta.databinding.FragmentHomeBinding
 import za.co.gingergeek.moneta.extensions.fadeIn
 import za.co.gingergeek.moneta.extensions.fadeOut
-import za.co.gingergeek.moneta.models.SavedExchangeRate
 import za.co.gingergeek.moneta.models.events.SyncCompletedEvent
 import za.co.gingergeek.moneta.ui.BaseFragment
+import za.co.gingergeek.moneta.ui.ChartTool
 import za.co.gingergeek.moneta.ui.shared.recyclerview.GenericRecyclerAdapter
 
 class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeBinding
     val viewModel: HomeViewModel by viewModels()
-
-    //private lateinit var savedExchangeRates: List<SavedExchangeRate>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -91,8 +85,8 @@ class HomeFragment : BaseFragment() {
         val presenter = HomePresenter(this)
         val adapter = GenericRecyclerAdapter(context, presenter)
         presenter.setDeleteCallback {
-            //adapter.removeItem(viewModel.findSavedRate(it.isoCode)) -> redundant
-            //toggleViews(adapter.isEmpty()) -> redundant
+            // adapter.removeItem(viewModel.findSavedRate(it.isoCode)) -> redundant
+            // toggleViews(adapter.isEmpty()) -> redundant
             // all we need to do is refresh the data when an item is deleted
             viewModel.refreshData()
         }
@@ -103,70 +97,8 @@ class HomeFragment : BaseFragment() {
         viewModel.savedRates.observe(viewLifecycleOwner, {
             adapter.refreshData(it)
             toggleViews(it.isEmpty())
-            setupBarChart(it)
+            ChartTool(bar_chart).drawBarChart(it)
         })
-    }
-
-    private fun setupBarChart(savedExchangeRates: List<SavedExchangeRate>) {
-        if (savedExchangeRates.isNotEmpty()) {
-            val barChartData = createChartData(savedExchangeRates)
-            configureChartAppearance(savedExchangeRates)
-            prepareChartData(barChartData)
-        }
-    }
-
-    /**
-     *
-     */
-    private fun createChartData(savedExchangeRates: List<SavedExchangeRate>): BarData {
-        val barData = arrayListOf<BarEntry>()
-        barData.addAll(savedExchangeRates.mapIndexed { i, value ->
-            BarEntry(i.toFloat(), value.exchangeRate)
-        })
-        val set = BarDataSet(barData, "Currency")
-        val dataSets = arrayListOf<IBarDataSet>()
-        dataSets.add(set)
-        return BarData(dataSets)
-    }
-
-    /**
-     *
-     */
-    private fun configureChartAppearance(savedExchangeRates: List<SavedExchangeRate>) {
-        bar_chart.description.isEnabled = false
-        bar_chart.setDrawValueAboveBar(false)
-
-        val xAxis: XAxis = bar_chart.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.granularity = 1f
-        xAxis.setDrawAxisLine(false)
-        xAxis.setDrawGridLines(false)
-
-        // fix the index issue here
-        xAxis.valueFormatter = object : ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return savedExchangeRates[value.toInt()].isoCode
-            }
-        }
-
-        val axisLeft = bar_chart.axisLeft
-        axisLeft.setDrawGridLines(false)
-        axisLeft.granularity = 10f
-        axisLeft.axisMinimum = 0f
-
-        val axisRight = bar_chart.axisRight
-        axisRight.setDrawGridLines(false)
-        axisRight.granularity = 10f
-        axisRight.axisMinimum = 0f
-    }
-
-    /**
-     *
-     */
-    private fun prepareChartData(data: BarData) {
-        data.setValueTextSize(12f)
-        bar_chart.data = data
-        bar_chart.invalidate()
     }
 
     private fun getLayoutManager(): RecyclerView.LayoutManager {

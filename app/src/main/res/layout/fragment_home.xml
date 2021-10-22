@@ -116,7 +116,8 @@
                     app:layout_anchor="@id/bottom_app_bar"
                     app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="ContentDescription" />
 
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
