@@ -24,7 +24,8 @@ android {
 
         buildConfigField('int','DATABASE_VERSION','1')
         buildConfigField('String', 'BASE_URL_SCHEMA', '"https://openexchangerates.org/api"')
-        buildConfigField('String', 'API_KEY', '"56f4ed1881bd49978648946a35b978d7"')
+        // used custom api key
+        buildConfigField('String', 'API_KEY', '"2d4b435525dd4faa80c6358d04ad3781"')
     }
 
     buildTypes {

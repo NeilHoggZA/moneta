@@ -3,7 +3,6 @@ package za.co.gingergeek.moneta.di
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import za.co.gingergeek.moneta.API_KEY
 import za.co.gingergeek.moneta.BuildConfig
 import za.co.gingergeek.moneta.net.OpenExchangeRatesAPI
 import za.co.gingergeek.moneta.net.OpenExchangeRatesConsumer
@@ -13,11 +12,11 @@ import javax.inject.Singleton
 class NetModule {
     @Singleton
     @Provides
-    fun providesBackendApi(context: Context): OpenExchangeRatesAPI? {
+    fun providesBackendApi(context: Context): OpenExchangeRatesAPI {
         return OpenExchangeRatesConsumer(
             context,
             BuildConfig.BASE_URL_SCHEMA,
-            API_KEY
+            BuildConfig.API_KEY
         )
     }
 }
