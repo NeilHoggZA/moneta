@@ -1,4 +1,13 @@
-# README #
+# Overview #
+
+### Screenshots
+
+<div align="center">
+  <img src="https://github.com/aeyonblack/moneta/blob/assignment-feature/app/src/main/assets/demo.gif?raw=true" width="300"/>
+  <img src="https://github.com/aeyonblack/moneta/blob/assignment-feature/app/src/main/assets/main.jpg?raw=true" width="300"/>
+  <img src="https://github.com/aeyonblack/moneta/blob/assignment-feature/app/src/main/assets/detail.jpg?raw=true" width="300"/>
+  <img src="https://github.com/aeyonblack/moneta/blob/assignment-feature/app/src/main/assets/notification.jpg?raw=true" width="300"/>
+</div>
 
 Moneta is an android application focussed on exchange rate monitoring. The app also has the ability to do currency conversions from USD and notify you of monitored currencies that has dropped below a certain value.
 
