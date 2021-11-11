@@ -12,7 +12,7 @@ import javax.inject.Singleton
 class NetModule {
     @Singleton
     @Provides
-    fun providesBackendApi(context: Context): OpenExchangeRatesAPI? {
+    fun providesBackendApi(context: Context): OpenExchangeRatesAPI {
         return OpenExchangeRatesConsumer(
             context,
             BuildConfig.BASE_URL_SCHEMA,

@@ -9,7 +9,7 @@ import za.co.gingergeek.moneta.helpers.SharedPreferenceHelper
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel : ViewModel()   {
     private var context: Context? = null
     private lateinit var homeRepository: HomeRepository
 

@@ -27,8 +27,9 @@ class HomeRepository(val context: Context): BaseRepository(context) {
         }
     }
 
+
     fun deleteStoredExchangeRate(isoCode: String, completedCallback: () -> Unit) {
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(Dispatchers.Main) { // maybe this coroutine should go
             withContext(Dispatchers.IO) {
                 database?.savedExchangeRatesDao()?.delete(isoCode)
                 database?.warningMessageDao()?.delete(isoCode)

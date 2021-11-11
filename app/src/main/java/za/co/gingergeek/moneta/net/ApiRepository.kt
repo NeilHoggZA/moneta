@@ -1,11 +1,13 @@
 package za.co.gingergeek.moneta.net
 
 import android.content.Context
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import za.co.gingergeek.moneta.R
+import za.co.gingergeek.moneta.TAG
 import za.co.gingergeek.moneta.ui.BaseRepository
 import za.co.gingergeek.moneta.helpers.NotificationHelper
 import za.co.gingergeek.moneta.helpers.SharedPreferenceHelper
@@ -31,6 +33,7 @@ class ApiRepository(val context: Context) : BaseRepository(context) {
 
     fun storeExchangeRates(exchangeRates: Map<String, Float>?) {
         launch {
+            Log.d(TAG, "storeExchangeRates")
             withContext(Dispatchers.IO) {
                 val map = exchangeRates ?: mapOf()
                 for ((key, value) in map) {
@@ -44,6 +47,7 @@ class ApiRepository(val context: Context) : BaseRepository(context) {
                 }
 
                 val savedExchangeRates = database?.savedExchangeRatesDao()?.loadAll() ?: listOf()
+                Log.d(TAG, "savedExchangeRates.size = ${savedExchangeRates.size}")
                 savedExchangeRates.forEach { savedRate ->
                     val updatedRate = map[savedRate.isoCode] ?: 0f
                     savedRate.exchangeRate = updatedRate
@@ -64,6 +68,7 @@ class ApiRepository(val context: Context) : BaseRepository(context) {
         savedRate: SavedExchangeRate,
         updatedRate: Float
     ) {
+        Log.d(TAG, "sendWarningIfRequired")
         val warningMessageDao = database?.warningMessageDao()
         val previouslyNotifiedMessage =
             warningMessageDao?.loadMessageForCode(savedRate.isoCode)
@@ -73,6 +78,11 @@ class ApiRepository(val context: Context) : BaseRepository(context) {
         ) {
             showNotification(context, savedRate)
             warningMessageDao?.add(WarningMessage(savedRate.isoCode, updatedRate))
+            Log.d(TAG, "sendWarningIfRequired: updated $updatedRate")
+        }
+        else {
+            Log.d(TAG, "sendWarningIfRequired: updated $updatedRate, " +
+                    "saved ${savedRate.exchangeRate}")
         }
     }
 

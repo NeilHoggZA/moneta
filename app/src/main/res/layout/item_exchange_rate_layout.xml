@@ -79,11 +79,12 @@
                 android:paddingBottom="16dp"
                 android:background="@drawable/clickable_item_background"
                 android:onClick="@{() -> presenter.deleteStoredExchangeRate(storedExchangeRate)}"
-                android:tint="?android:attr/textColorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_bin" />
+                app:srcCompat="@drawable/ic_bin"
+                app:tint="?android:attr/textColorPrimary"
+                tools:ignore="ContentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

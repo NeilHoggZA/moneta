@@ -2,10 +2,12 @@ package za.co.gingergeek.moneta.ui.home
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.View.*
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +22,7 @@ import za.co.gingergeek.moneta.extensions.fadeIn
 import za.co.gingergeek.moneta.extensions.fadeOut
 import za.co.gingergeek.moneta.models.events.SyncCompletedEvent
 import za.co.gingergeek.moneta.ui.BaseFragment
+import za.co.gingergeek.moneta.ui.ChartTool
 import za.co.gingergeek.moneta.ui.shared.recyclerview.GenericRecyclerAdapter
 
 class HomeFragment : BaseFragment() {
@@ -30,7 +33,7 @@ class HomeFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return binding.root
     }
@@ -82,16 +85,19 @@ class HomeFragment : BaseFragment() {
         val presenter = HomePresenter(this)
         val adapter = GenericRecyclerAdapter(context, presenter)
         presenter.setDeleteCallback {
-            adapter.removeItem(viewModel.findSavedRate(it.isoCode))
-            toggleViews(adapter.isEmpty())
+            // adapter.removeItem(viewModel.findSavedRate(it.isoCode)) -> redundant
+            // toggleViews(adapter.isEmpty()) -> redundant
+            // all we need to do is refresh the data when an item is deleted
+            viewModel.refreshData()
         }
 
         recycler.addOnScrollListener(getScrollListener())
         recycler.layoutManager = layoutManager
         recycler.adapter = adapter
-        viewModel.savedRates.observe(viewLifecycleOwner, Observer {
+        viewModel.savedRates.observe(viewLifecycleOwner, {
             adapter.refreshData(it)
             toggleViews(it.isEmpty())
+            ChartTool(bar_chart).drawBarChart(it)
         })
     }
 
@@ -143,15 +149,17 @@ class HomeFragment : BaseFragment() {
      */
     private fun toggleViews(isEmpty: Boolean) {
         if (isEmpty) {
-            last_updated.visibility = View.INVISIBLE
-            last_updated_image.visibility = View.INVISIBLE
-            no_data_layout.visibility = View.VISIBLE
-            arrow.visibility = View.VISIBLE
+            last_updated.visibility = INVISIBLE
+            last_updated_image.visibility = INVISIBLE
+            no_data_layout.visibility = VISIBLE
+            arrow.visibility = VISIBLE
+            bar_chart.visibility = GONE
         } else {
-            last_updated.visibility = View.VISIBLE
-            last_updated_image.visibility = View.VISIBLE
-            no_data_layout.visibility = View.INVISIBLE
-            arrow.visibility = View.INVISIBLE
+            bar_chart.visibility = VISIBLE
+            last_updated.visibility = VISIBLE
+            last_updated_image.visibility = VISIBLE
+            no_data_layout.visibility = INVISIBLE
+            arrow.visibility = INVISIBLE
         }
     }
 }

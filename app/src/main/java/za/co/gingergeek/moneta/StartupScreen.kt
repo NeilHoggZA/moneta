@@ -42,7 +42,13 @@ class StartupScreen : AppCompatActivity() {
     }
 
     private fun updateExchangeRatesIfRequired() {
-        if (SharedPreferenceHelper.getExchangeRatesLastUpdatedTimestamp(this) == -1L) {
+        val latestTimestamp: Long = SharedPreferenceHelper
+            .getExchangeRatesLastUpdatedTimestamp(this)
+        /* The reason why notifications were not working was because the
+        * app does a network request on first startup only, I have modified the code
+        * to perform a network request every minute for quick testing */
+        if (latestTimestamp == -1L ||
+            System.currentTimeMillis() - latestTimestamp >= 60000L) {
             api?.fetchExchangeRates { response ->
                 response?.run {
                     progress_text.text = getString(R.string.startup_fetching_data)
@@ -58,7 +64,10 @@ class StartupScreen : AppCompatActivity() {
     }
 
     private fun updateCurrenciesIfRequired() {
-        if (SharedPreferenceHelper.getCurrenciesLastUpdatedTimestamp(this) == -1L) {
+        val latestTimestamp: Long = SharedPreferenceHelper
+            .getExchangeRatesLastUpdatedTimestamp(this)
+        if (latestTimestamp == -1L ||
+            System.currentTimeMillis() - latestTimestamp >= 60000L) {
             api?.fetchCurrencies { response ->
                 response?.run {
                     progress_text.text = getString(R.string.startup_fetching_data)
